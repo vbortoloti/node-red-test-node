@@ -6,7 +6,7 @@ module.exports = function(RED) {
         var spawn = require("child_process").spawn;
 
         node.on('input', function(msg) {
-            node.child = spawn(gpioCommand, ["in",node.pin,node.intype,node.debounce]);
+            node.child = spawn(gpioCommand, [2,2]);
             console.log("Trying to spwn");
             let output;
             node.child.stdout.on("data", (data) => {
