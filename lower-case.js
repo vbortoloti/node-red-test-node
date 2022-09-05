@@ -2,11 +2,11 @@ module.exports = function(RED) {
     function LowerCaseNode(config) {
         RED.nodes.createNode(this,config);
         var node = this;
-
+        var gpioCommand = __dirname+'/print';
         var spawn = require("child_process").spawn;
 
         node.on('input', function(msg) {
-            node.child = spawn('python',["./print.py",2,2]);
+            node.child = spawn(gpioCommand, ["in",node.pin,node.intype,node.debounce]);
             console.log("Trying to spwn");
             let output;
             node.child.stdout.on("data", (data) => {
