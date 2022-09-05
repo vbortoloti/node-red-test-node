@@ -8,13 +8,13 @@ module.exports = function(RED) {
         console.log("Trying to spwn");
 
         function inputlistener(msg, send, done) {
-            if (msg.payload === "true") { msg.payload = true; }
-            if (msg.payload === "false") { msg.payload = false; }
-            var out = Number(msg.payload);
+            var out;
+            if (msg.payload === "true") { msg.payload = true; out = 1 }
+            if (msg.payload === "false") { msg.payload = false; out = 0}
             var limit = 1;
             
             if (node.child !== null) {
-                node.child.stdin.write("0"+"\n", () => {
+                node.child.stdin.write(out+"\n", () => {
                     if (done) { done(); }
                 });
             }else {
