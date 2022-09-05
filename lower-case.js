@@ -7,11 +7,23 @@ module.exports = function(RED) {
         node.child = spawn(gpioCommand, [2]);
         console.log("Trying to spwn");
 
-        node.on('input', function(msg) {
-            console.log(output);
-            msg.payload = '-output-';
+        function inputlistener(msg, send, done) {
+            if (msg.payload === "true") { msg.payload = true; }
+            if (msg.payload === "false") { msg.payload = false; }
+            var out = Number(msg.payload);
+            var limit = 1;
+            
+            if (node.child !== null) {
+                node.child.stdin.write(out+"\n", () => {
+                    if (done) { done(); }
+                });
+            }else {
+                console.log("erro")
+            }
             node.send(msg);
-        });
+        }
+
+        node.on('input',inputlistener);
     }
     RED.nodes.registerType("lower-case",LowerCaseNode);
 }
