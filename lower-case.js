@@ -10,13 +10,8 @@ module.exports = function(RED) {
                 console.log("ss"+d[i]);
             }
         });
-
-
         node.on('input', function(msg) {
-            
-            console.log("ss");
-            msg.payload = '-output-';
-            node.send(msg);
+            console.log("gogogo");
         });
     }
     RED.nodes.registerType("lower-case",LowerCaseNode);
