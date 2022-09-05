@@ -7,7 +7,7 @@ module.exports = function(RED) {
         node.child.stdout.on('data', function (data) {
             var d = data.toString().trim().split("\n");
             for (var i = 0; i < d.length; i++) {
-                console.log(d[i]);
+                console.log("ss"+d[i]);
             }
         });
 
