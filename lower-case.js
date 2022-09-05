@@ -4,14 +4,15 @@ module.exports = function(RED) {
         var node = this;
         var gpioCommand = __dirname+'/print.sh';
         var spawn = require("child_process").spawn;
-        node.child.stdout.on('data', function (data) {
-            var d = data.toString().trim().split("\n");
-            for (var i = 0; i < d.length; i++) {
-                console.log("ss"+d[i]);
-            }
-        });
+        node.child = spawn(gpioCommand, [2]);
+        console.log("Trying to spwn");
+
         node.on('input', function(msg) {
-            console.log("gogogo");
+            
+
+            console.log(output);
+            msg.payload = '-output-';
+            node.send(msg);
         });
     }
     RED.nodes.registerType("lower-case",LowerCaseNode);
