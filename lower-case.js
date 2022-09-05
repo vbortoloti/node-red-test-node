@@ -14,7 +14,7 @@ module.exports = function(RED) {
             var limit = 1;
             
             if (node.child !== null) {
-                node.child.stdin.write(out+"\n", () => {
+                node.child.stdin.write("0"+"\n", () => {
                     if (done) { done(); }
                 });
             }else {
