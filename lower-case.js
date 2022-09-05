@@ -2,7 +2,7 @@ module.exports = function(RED) {
     function LowerCaseNode(config) {
         RED.nodes.createNode(this,config);
         var node = this;
-        var gpioCommand = '.'+__dirname+'/print.sh';
+        var gpioCommand = __dirname+'/print.sh';
         var spawn = require("child_process").spawn;
 
         node.on('input', function(msg) {
