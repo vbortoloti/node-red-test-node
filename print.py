@@ -23,6 +23,8 @@ print("led "+str(pin)+" high")
 
 labrador = Labrador()  
 labrador.gpio3.enable_io(GPIO.Direction.OUTPUT, alias="led_out")
+print("Led High")
+labrador.led_out.high()
 print("running")
 
 while True:

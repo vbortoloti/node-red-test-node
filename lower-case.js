@@ -8,8 +8,6 @@ module.exports = function(RED) {
         console.log("Trying to spwn");
 
         node.on('input', function(msg) {
-            
-
             console.log(output);
             msg.payload = '-output-';
             node.send(msg);
